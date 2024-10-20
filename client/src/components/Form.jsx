@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Tooltip from "@mui/material/Tooltip";
-import CustomSlider from "./customSlider";
+import CustomSlider from "./CustomSlider";
 
 // Random Index (RI) untuk ukuran matriks
 const RI_VALUES = { 2: 0, 3: 0.58, 4: 0.9, 5: 1.12, 6: 1.24, 7: 1.32 };
