@@ -7,8 +7,7 @@ const router = express.Router();
 
 router.use(cors({
   credentials: true,
-  origin:'http://localhost:5173'
-  // origin: 'https://ahpform.netlify.app', 
+  origin: process.env.FRONTEND_URL
 })) 
 
 // Rute untuk mengirimkan data perbandingan berpasangan (pairwise comparison).
