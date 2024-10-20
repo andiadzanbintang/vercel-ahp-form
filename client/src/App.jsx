@@ -12,8 +12,7 @@ import './App.css'
 import Navbar from './components/Navbar';
  
 
-// axios.defaults.baseURL = "https://ahp-form-rc.vercel.app";
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
 axios.defaults.withCredentials = true
 
 function App() {
