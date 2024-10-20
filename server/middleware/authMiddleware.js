@@ -13,7 +13,7 @@ const requireAdmin = async (req, res, next) => {
         const token = req.cookies.token; // Pastikan menggunakan 'token' sesuai dengan yang digunakan di adminController
 
         // Cek apakah token ada 
-        if (!token) { 
+        if (!token) {  
             return res.status(401).json({ error: 'Unauthorized! Token is missing.' });
         }
 

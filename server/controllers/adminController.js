@@ -39,15 +39,20 @@ const loginAdmin = async (req, res) => {
           expiresIn: "1d",
         }
       );
-  
-      // Send token in cookie
-      res.cookie("token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: 'lax',  // Adding SameSite attribute for CSRF protection
-        maxAge: 24 * 60 * 60 * 1000,
-      });
-      return res.status(200).json({status:200,  message: "Login successful." });
+
+      try {
+        // Send token in cookie
+        res.cookie("token", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: 'lax',  // Adding SameSite attribute for CSRF protection
+          maxAge: 24 * 60 * 60 * 1000,
+        });
+        return res.status(200).json({status:200,  message: "Login successful." });
+      } catch (error) {
+        console.error("Something went wrong", error)
+        return res.status(500).json({status:500, message:"Something went wrong"})
+      }
     } catch (error) {
       console.error("Login error:", error);
       return res.status(500).json({status:500, message: "Server error." });
@@ -70,7 +75,7 @@ const loginAdmin = async (req, res) => {
     }
   };
 
-  const checkAuth = async (req, res) => { 
+  const checkAuth = async (req, res) => {  
     try {
       const admin = req.admin; // Dari middleware requireAdmin
       if (admin) {

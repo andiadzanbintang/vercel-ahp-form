@@ -22,7 +22,7 @@ router.use(cors({
 
 router.post('/login', validateLogin, loginAdmin);
 router.post('/logout', logoutAdmin);
-router.get('/checkAuth', requireAdmin, checkAuth);
+router.get('/checkAuth', requireAdmin, checkAuth); 
 
 // Handle Form
 router.get('/getIteration', requireAdmin, getIteration)
