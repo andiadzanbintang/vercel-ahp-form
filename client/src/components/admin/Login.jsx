@@ -33,7 +33,7 @@ const AdminLogin = () => {
         <div className='login-email form-login-item'>
           <label>Email:</label>
           <input 
-            type="email" 
+            type="email"  
             value={email} 
             onChange={(e) => setEmail(e.target.value)} 
             required 

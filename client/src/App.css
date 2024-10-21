@@ -663,6 +663,149 @@ h2 {
   font-weight: bold; /* Membuat nilai lebih tegas */
 }
 
+/* ADMIN LOGIN */
+/* Login Container */
+.login-container {
+  background-color: #FFFFFF; /* Putih */
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Title */
+.login-title {
+  text-align: center;
+  color: #052659; /* Biru1 */
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Form Item */
+.form-login-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-login-item label {
+  color: #021024; /* Hitam */
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.form-login-item input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #7DA0CA; /* Abu */
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-login-item input:focus {
+  border-color: #5483B3; /* Biru2 */
+}
+
+/* Login Button */
+.login-btn {
+  background-color: #052659; /* Biru1 */
+  color: #FFFFFF;
+  padding: 12px;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #5483B3; /* Biru2 */
+}
+
+.set-iteration-container {
+  background-color: #FFFFFF; /* Putih */
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Title */
+.set-iteration-container h2 {
+  color: #052659; /* Biru1 */
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Loading and Iteration Text */
+.set-iteration-container p {
+  color: #021024; /* Hitam */
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+/* Form */
+.set-iteration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.set-iteration-form label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #021024;
+  text-align: left;
+}
+
+/* Input */
+.set-iteration-form input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #7DA0CA; /* Abu */
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.set-iteration-form input:focus {
+  border-color: #5483B3; /* Biru2 */
+}
+
+/* Button */
+.set-iteration-btn {
+  background-color: #052659; /* Biru1 */
+  color: #FFFFFF;
+  padding: 12px;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.set-iteration-btn:hover {
+  background-color: #5483B3; /* Biru2 */
+}
+
+.set-iteration-btn:disabled {
+  background-color: #7DA0CA; /* Abu */
+  cursor: not-allowed;
+}
+
 
 /* Responsif */
 @media (max-width: 768px) {
@@ -691,6 +834,43 @@ h2 {
 
   .range-container {
     margin: 0 10px;
+  }
+
+  /* ADMIN */
+  .login-container {
+    padding: 30px;
+  }
+
+  .login-title {
+    font-size: 20px;
+  }
+
+  .form-login-item input {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .login-btn {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .set-iteration-container {
+    padding: 30px;
+  }
+
+  .set-iteration-container h2 {
+    font-size: 20px;
+  }
+
+  .set-iteration-form input {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .set-iteration-btn {
+    font-size: 16px;
+    padding: 10px;
   }
 }
 
@@ -786,4 +966,35 @@ h2 {
 .dropdown-header{
   font-size: 18px;
 }
+}
+
+@media (max-width: 368px) {
+    /* FORM */
+    .comparison {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+  
+    .comparison label {
+      width: 100%;
+      text-align: left;
+      margin-bottom: 5px;
+      font-size: 11px;
+    }
+  
+    .comparison label:nth-child(3){
+      position: absolute;
+      text-align: right;
+      top: 0;
+    }
+  
+    .range-container {
+      margin: auto;
+      left: -28px;
+    }
+    input {
+      width: 100%;
+    }
 }

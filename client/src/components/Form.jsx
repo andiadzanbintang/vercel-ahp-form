@@ -269,7 +269,6 @@ const Form = () => {
           type="text"
           value={jabatan}
           onChange={(e) => setJabatan(e.target.value)} // Menangani perubahan input
-          placeholder="Contoh : Tenaga ahli kelautan"
         />
       </div>
       <div className="data-diri">
@@ -279,7 +278,6 @@ const Form = () => {
           type="text"
           value={instansi}
           onChange={(e) => setInstansi(e.target.value)} // Menangani perubahan input
-          placeholder="Contoh : PT Cilaki 45"
         />
       </div>
 
@@ -319,7 +317,7 @@ const Form = () => {
       </p>
       <div className="comparison">
         <label>
-          Financial
+          Finansial
           <Tooltip title="Mengukur aspek keuangan proyek seperti keuntungan dan investasi">
             <span className="tooltip-icon">i</span>{" "}
             {/* Anda bisa menggunakan simbol atau ikon untuk menunjukkan tooltip */}
@@ -333,7 +331,7 @@ const Form = () => {
           />
         </div>
         <label>
-          Economy
+          Ekonomi
           <Tooltip title="Mengukur dampak ekonomi seperti PDB dan nilai tambah">
             <span className="tooltip-icon">i</span>{" "}
             {/* Anda bisa menggunakan simbol atau ikon untuk menunjukkan tooltip */}
@@ -346,7 +344,7 @@ const Form = () => {
       </p>
       <div className="comparison">
         <label>
-          Social
+          Sosial
           <Tooltip title="Menganalisis dampak sosial, seperti tenaga kerja yang terserap">
             <span className="tooltip-icon">i</span>{" "}
             {/* Anda bisa menggunakan simbol atau ikon untuk menunjukkan tooltip */}
@@ -360,7 +358,7 @@ const Form = () => {
           />
         </div>
         <label>
-          Environment
+          Lingkungan
           <Tooltip title="Mengukur dampak lingkungan seperti penurunan emisi karbon">
             <span className="tooltip-icon">i</span>{" "}
             {/* Anda bisa menggunakan simbol atau ikon untuk menunjukkan tooltip */}
@@ -981,11 +979,11 @@ const Form = () => {
       <p className="show-value">Nilai : {showValue(level3.Serapan_JumlahPenerima)}</p>
       <div className="comparison">
         <label className="social-indicator">
-          Serapan Tenaga Kerja
+          Serapan Tenaga<br/>Kerja
           <Tooltip title="Multiplier atau angka pengganda tenaga kerja menunjukkan berapa tambahan tenaga kerja yang diperlukan di suatu sub sektor atau lapangan usaha Jika ada tambahan final demand (konsumsi rumah tangga, pengeluaran pemerintah, atau investasi) sebesar Rp 1 di sub sektor atau lapangan usaha tersebut.">
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Serapan Tenaga Kerja */}
-          </Tooltip>
+          </Tooltip> 
         </label>
         <div className="range-container">
           <CustomSlider
@@ -995,7 +993,7 @@ const Form = () => {
           />
         </div>
         <label className="social-indicator">
-          Jumlah Penerima Manfaat
+          Jumlah Penerima<br/>Manfaat
           <Tooltip title="Jumlah penerima manfaat langsung yang mendapatkan keuntungan dari proyek.">
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Jumlah Penerima Manfaat */}

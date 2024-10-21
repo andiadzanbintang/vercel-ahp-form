@@ -207,7 +207,7 @@ export default function AllResult() {
         <ul className="result-item level-2">
           {level2Indicators.map((indicator) => (
             <li key={indicator} className={indicator} onClick={() => handleIndicatorClick('level2', indicator)}>
-              <h2>{indicator}</h2>
+              <h2>{indicator === "Financial" ? "Finansial" : (indicator === "Economy" ? "Ekonomi" : (indicator === "Social" ? "Sosial" : "Lingkungan"))}</h2>
               <h3>{formatNumber(result.level2Weights?.[indicator])}</h3>
             </li>
           ))}
