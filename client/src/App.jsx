@@ -43,7 +43,11 @@ function App() {
 
   return (
     <>
-     <Toaster />
+     <Toaster
+     toastOptions={{
+      duration: 2000
+     }}
+     />
      <Navbar />
      <Routes>
        <Route path="/" element={<Dashboard />}/>

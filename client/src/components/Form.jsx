@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 import toast from "react-hot-toast";
 import Tooltip from "@mui/material/Tooltip";
@@ -8,6 +9,7 @@ import CustomSlider from "./CustomSlider";
 const RI_VALUES = { 2: 0, 3: 0.58, 4: 0.9, 5: 1.12, 6: 1.24, 7: 1.32 };
 
 const Form = () => {
+  const navigate = useNavigate()
   const [name, setName] = useState("");
   const [instansi, setInstansi] = useState("");
   const [jabatan, setJabatan] = useState("");
@@ -244,7 +246,12 @@ const Form = () => {
     try {
       await axios.post("/api/v1/form/submit", data);
       toast.success("Data successfully submitted!");
-      window.location.reload();
+      
+      setTimeout(() => {
+        navigate("/"); 
+      }, 2000);
+
+
     } catch (error) {
       console.error("Something went wrong:", error);
       toast.error("Failed to submit data.");
