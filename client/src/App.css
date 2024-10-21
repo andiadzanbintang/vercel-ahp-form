@@ -20,10 +20,10 @@
 /* tutorial.css */
 
 .tutorial {
-  background-color: #FFFFFF;
+  background-color: whitesmoke;
   padding: 20px;
   padding-top: 5px;
-  max-width: 600px;
+  width: 90%;
   font-family: 'Arial', sans-serif;
   position: relative;
   left: 3.8rem;
@@ -141,7 +141,6 @@ p.dropdown-note{
 /* KONTAINER UTAMA */
 form {
     width: 100%;
-    max-width: 800px;
     margin: 2rem auto;
     padding: 2rem;
     background-color: #fff;
@@ -189,16 +188,19 @@ p.show-value {
 /* COMPARISON SECTION */
 .comparison {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     margin-bottom: 3rem;
     gap: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+
 }
 
 .comparison label {
     font-weight: bold;
     color: #000;
-    flex: 1;
+    flex: 3;
     text-align: center;
 }
 
@@ -208,6 +210,7 @@ p.show-value {
     position: relative;
     width: 100%;
     margin-bottom: 20px;
+    margin: auto;
 }
 
 .range-container input[type="range"] {
@@ -342,7 +345,7 @@ h2 {
     color: #666;
     line-height: 1.5;
 }
-/* ADMIN DASHBOARD */
+
 
 /* USER DASHBOARD */
 /* all result */
@@ -601,6 +604,7 @@ h2 {
   padding: 3px 10px;
   border-radius: 50%;
   font-weight: 400;
+  display: none;
 
   cursor: pointer; /* Agar terlihat seperti bisa diklik */
   margin-left: 5px; /* Spasi antara label dan ikon */
@@ -807,6 +811,13 @@ h2 {
 }
 
 
+/* FORM INDIKATOR */
+.indicator-form-description{
+  font-size: 10px;
+  font-weight: 500;
+}
+
+
 /* Responsif */
 @media (max-width: 768px) {
   /* HALAMAN INDIKATOR */
@@ -908,6 +919,10 @@ h2 {
     text-align: right;
   }
 
+  .comparison label span{
+    display: none;
+  }
+
   label.social-indicator, label.social-indicator span{
     font-size: 11px;
   }
@@ -966,6 +981,11 @@ h2 {
 .dropdown-header{
   font-size: 18px;
 }
+
+/* Indicator page */
+.description {
+  font-size: 0.8rem;
+}
 }
 
 @media (max-width: 368px) {
@@ -989,6 +1009,10 @@ h2 {
       text-align: right;
       top: 0;
     }
+
+    .comparison label span{
+      display: none;
+    }
   
     .range-container {
       margin: auto;
@@ -996,5 +1020,9 @@ h2 {
     }
     input {
       width: 100%;
+    }
+
+    .description {
+      font-size: 0.75rem;
     }
 }

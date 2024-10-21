@@ -1,13 +1,13 @@
 const indikatorData = {
   level1: [
-    { title: "IFE", description: "Indeks Finansial Ekonomi digunakan untuk menilai performa ekonomi proyek dari sisi keuangan. Nilai indeks ini berkisar antara 0 dan 1. Nilai ini merupakan hasil kumulasi setiap indikator yang sudah dikalikan dengan bobot masing masing indikator. Nilai ini disusun oleh dua indikator yaitu indikator ekonomi dan finansial" },
-    { title: "ISL", description: "Indeks Sosial Lingkungan digunakan untuk mengukur dampak sosial dan lingkungan. Nilai indeks ini berkisar antara 0 dan 1. Nilai ini merupakan hasil kumulasi setiap indikator yang sudah dikalikan dengan bobot masing masing indikator. Nilai ini disusun oleh dua indikator yaitu indikator Sosial dan Lingkungan." },
+    { title: "IFE", description: "Indeks Finansial Ekonomi (IFE) adalah ukuran yang mengukur sejauh mana dampak keuangan dan ekonomi yang ditimbulkan oleh adanya proyek pembangunan infrastruktur." },
+    { title: "ISL", description: "Indeks Sosial Lingkungan (ISL) adalah ukuran yang mengukur sejauh mana proyek infrastruktur dapat meningkatkan kualitas hidup dan sejauh mana pengorbanan yang diakibatkan pembangunan proyek tersebut dapat membahayakan aspek lingkungan." },
   ],
   level2: [
-    { title: "Financial", description: "Mengukur aspek keuangan proyek seperti keuntungan dan investasi." },
-    { title: "Economy", description: "Mengukur dampak ekonomi seperti PDB dan nilai tambah." },
-    { title: "Social", description: "Menganalisis dampak sosial, seperti tenaga kerja yang terserap." },
-    { title: "Environment", description: "Menilai dampak lingkungan seperti penurunan emisi karbon." },
+    { title: "Financial", description: "Analisis finansial adalah analisis kelayakan investasi suatu proyek dari aspek keuangan yang diukur dengan indikator manfaat-biaya (benefit-cost) dengan satuan nilai uang (moneter value) dan dianalisis dengan konsep analisis finansial dengan target financially sustainable untuk memaksimumkan keuntungan bagi pemilik proyek (private return) berdasarkan perhitungan harga pasar (market price)." },
+    { title: "Economy", description: "Analisis ekonomi adalah analisis kelayakan investasi suatu proyek dari aspek keuangan yang diukur dengan indikator manfaat-biaya (benefit-cost) dengan satuan nilai uang (moneter value) dan dianalisis dengan konsep analisis ekonomi dengan target economically viable untuk memaksimumkan keuntungan ekonomi (economic profit atau sosial return) dalam rangka memaksimumkan kesejahteraan masyarakat secara luas berdasarkan perhitungan harga ekonomi (economic cost) yang diukur dengan konsep shadow price, real price, dan opportunity cost (benefit foregone)." },
+    { title: "Social", description: "Analisis aspek sosial adalah mengukur dampak sosial yang dapat secara langsung maupun tidak langsung ditimbulkan oleh adanya investasi suatu proyek infrastruktur dan dirasakan oleh masyarakat di sekitar lokasi proyek maupun masyarakat pada lingkungan yang lebih luas. " },
+    { title: "Environment", description: "Analisis aspek lingkungan adalah mengukur dampak lingkungan dan perubahan kondisi keanekaragaman hayati yang ditimbulkan oleh adanya investasi suatu proyek, baik dampak atau eksternalitas positif maupun dampak atau eksternalitas negatif." },
   ],
   level3: [
     {
@@ -136,7 +136,7 @@ export default function IndikatorPage() {
         <div className="lvl-2-group indikator-group">
         {indikatorData.level2.map((indikator, index) => (
             <div className="indikator-item" key={index}>
-            <h2 className="indikator-title">{indikator.title}</h2>
+            <h2 className="indikator-title">{indikator.title === "Financial" ? 'Finansial' : (indikator.title === "Economy" ? 'Ekonomi' : (indikator.title === "Social" ? "Sosial" : "Lingkungan"))}</h2>
             <div className="description">{indikator.description}</div>
             </div>
         ))}

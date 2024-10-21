@@ -251,6 +251,50 @@ const Form = () => {
     }
   };
 
+  const handleDescription = (indikators) => {
+    switch (indikators) {
+      case "IFE":
+        return "Indeks Finansial Ekonomi (IFE) adalah ukuran yang mengukur sejauh mana dampak keuangan dan ekonomi yang ditimbulkan oleh adanya proyek pembangunan infrastruktur.";
+      case "ISL":
+        return "Indeks Sosial Lingkungan (ISL) adalah ukuran yang mengukur sejauh mana proyek infrastruktur dapat meningkatkan kualitas hidup dan sejauh mana pengorbanan yang diakibatkan pembangunan proyek tersebut dapat membahayakan aspek lingkungan.";
+      case "Financial":
+        return "Analisis finansial adalah analisis kelayakan investasi suatu proyek dari aspek keuangan dengan target financially sustainable untuk memaksimumkan keuntungan bagi pemilik proyek.";
+      case "Economy":
+        return "Analisis ekonomi mengevaluasi kelayakan proyek untuk memaksimumkan keuntungan ekonomi dan kesejahteraan masyarakat secara luas.";
+      case "Social":
+        return "Analisis aspek sosial mengukur dampak sosial yang ditimbulkan oleh investasi proyek dan dirasakan oleh masyarakat di sekitar lokasi.";
+      case "Environment":
+        return "Analisis aspek lingkungan mengukur dampak lingkungan dan perubahan kondisi keanekaragaman hayati akibat investasi proyek.";
+      case "FNPV":
+        return "Financial Net Present Value adalah keuntungan netto suatu proyek berdasarkan nilai saat ini melalui analisis finansial.";
+      case "FNBC":
+        return "Financial Net Benefit Cost Ratio menggambarkan perbandingan antara FNPV positif dan negatif untuk menunjukkan benefit proyek.";
+      case "FIRR":
+        return "Financial Internal Rate of Return adalah tingkat keuntungan yang membuat FNPV sama dengan nol.";
+      case "ENPV":
+        return "Economic Net Present Value adalah keuntungan netto suatu proyek berdasarkan nilai saat ini melalui analisis ekonomi.";
+      case "ENBC":
+        return "Economic Net Benefit Cost Ratio menunjukkan berapa kali lipat benefit yang diperoleh dari biaya yang dikeluarkan.";
+      case "EIRR":
+        return "Economic Internal Rate of Return adalah tingkat pengembalian ekonomi yang membuat ENPV sama dengan nol.";
+      case "PDRB":
+        return "PDRB sub-sektor menggambarkan nilai tambahan berdasarkan ICOR sebagai rasio antara tambahan investasi dan output.";
+      case "Multiplier Output":
+        return "Output multiplier menunjukkan tambahan output pada suatu sektor dari peningkatan final demand sebesar Rp 1.";
+      case "Backward Linkage":
+        return "Backward Linkage mengukur seberapa besar suatu sektor dapat menarik pertumbuhan sektor penyedia bahan bakunya.";
+      case "Forward Linkage":
+        return "Forward Linkage mengukur seberapa besar suatu sektor mampu mendorong pertumbuhan sektor lain yang menggunakan inputnya.";
+      case "Serapan Tenaga Kerja":
+        return "Multiplier tenaga kerja menunjukkan tambahan tenaga kerja yang diperlukan dari peningkatan final demand.";
+      case "Jumlah Penerima Manfaat":
+        return "Jumlah penerima manfaat adalah jumlah individu atau kelompok yang mendapatkan keuntungan langsung dari proyek.";
+      default:
+        return "Deskripsi tidak tersedia untuk indikator ini.";
+    }
+  };
+  
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="data-diri">
@@ -291,6 +335,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Anda bisa menggunakan simbol atau ikon untuk menunjukkan tooltip */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("IFE")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -307,6 +352,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk ISL */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("ISL")}</span>
         </label>
       </div>
 
@@ -322,6 +368,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Anda bisa menggunakan simbol atau ikon untuk menunjukkan tooltip */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Financial")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -336,6 +383,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Anda bisa menggunakan simbol atau ikon untuk menunjukkan tooltip */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Economy")}</span>
         </label>
       </div>
 
@@ -349,6 +397,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Anda bisa menggunakan simbol atau ikon untuk menunjukkan tooltip */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Social")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -363,6 +412,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Anda bisa menggunakan simbol atau ikon untuk menunjukkan tooltip */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Environment")}</span>
         </label>
       </div>
 
@@ -377,6 +427,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk FNPV */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("FNPV")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -391,6 +442,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk FNBC */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("FNBC")}</span>
         </label>
       </div>
 
@@ -402,6 +454,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk FIRR */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("FIRR")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -416,6 +469,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk FNBC */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("FNBC")}</span>
         </label>
       </div>
 
@@ -427,6 +481,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk FIRR */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("FIRR")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -441,6 +496,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk FNPV */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("FNPV")}</span>
         </label>
       </div> 
 
@@ -453,6 +509,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk ENPV */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("ENPV")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -467,6 +524,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk ENBC */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("ENBC")}</span>
         </label>
       </div>
 
@@ -478,6 +536,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk EIRR */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("EIRR")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -492,6 +551,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk ENBC */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("ENBC")}</span>
         </label>
       </div>
 
@@ -503,6 +563,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk EIRR */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("EIRR")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -517,6 +578,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk ENPV */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("ENPV")}</span>
         </label>
       </div>
 
@@ -529,6 +591,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk PDRB */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("PDRB")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -543,6 +606,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk EIRR */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("EIRR")}</span>
         </label>
       </div>
 
@@ -554,6 +618,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk PDRB */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("PDRB")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -568,6 +633,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk ENPV */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("ENPV")}</span>
         </label>
       </div>
 
@@ -579,6 +645,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk PDRB */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("PDRB")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -593,6 +660,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk ENBC */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("ENBC")}</span>
         </label>
       </div>
 
@@ -605,6 +673,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Multiplier Output */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Multiplier Output")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -619,6 +688,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk ENPV */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("ENPV")}</span>
         </label>
       </div>
 
@@ -630,6 +700,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Multiplier Output */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Multiplier Output")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -644,6 +715,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk ENBC */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("ENBC")}</span>
         </label>
       </div>
 
@@ -655,6 +727,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Multiplier Output */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Multiplier Output")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -669,6 +742,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk EIRR */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("EIRR")}</span>
         </label>
       </div>
 
@@ -680,6 +754,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Multiplier Output */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Multiplier Output")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -694,6 +769,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk PDRB */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("PDRB")}</span>
         </label>
       </div>
 
@@ -706,6 +782,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Forward Linkage */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Forward Linkage")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -720,6 +797,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk ENPV */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("ENPV")}</span>
         </label>
       </div>
 
@@ -731,6 +809,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Forward Linkage */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Forward Linkage")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -745,6 +824,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk ENBC */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("ENBC")}</span>
         </label>
       </div>
 
@@ -756,6 +836,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Forward Linkage */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Forward Linkage")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -770,6 +851,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk EIRR */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("EIRR")}</span>
         </label>
       </div>
 
@@ -781,6 +863,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Forward Linkage */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Forward Linkage")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -795,6 +878,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk PDRB */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("PDRB")}</span>
         </label>
       </div>
 
@@ -806,6 +890,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Forward Linkage */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Forward Linkage")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -820,6 +905,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Multiplier Output */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Multiplier Output")}</span>
         </label>
       </div>
 
@@ -832,6 +918,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Backward Linkage */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Backward Linkage")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -846,6 +933,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk ENPV */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("ENPV")}</span>
         </label>
       </div>
 
@@ -857,6 +945,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Backward Linkage */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Backward Linkage")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -871,6 +960,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk ENBC */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("ENBC")}</span>
         </label>
       </div>
 
@@ -882,6 +972,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Backward Linkage */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Backward Linkage")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -896,6 +987,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk EIRR */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("EIRR")}</span>
         </label>
       </div>
 
@@ -907,6 +999,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Backward Linkage */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Backward Linkage")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -921,6 +1014,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk PDRB */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("PDRB")}</span>
         </label>
       </div>
 
@@ -932,6 +1026,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Backward Linkage */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Backward Linkage")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -946,6 +1041,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Multiplier Output */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Multiplier Output")}</span>
         </label>
       </div>
 
@@ -957,6 +1053,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Backward Linkage */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Backward Linkage")}</span>
         </label>
 
         <div className="range-container">
@@ -972,6 +1069,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Forward Linkage */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Forward Linkage")}</span>
         </label>
       </div>
 
@@ -984,6 +1082,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Serapan Tenaga Kerja */}
           </Tooltip> 
+          <span className="indicator-form-description"><br/>{handleDescription("Serapan Tenaga Kerja")}</span>
         </label>
         <div className="range-container">
           <CustomSlider
@@ -998,6 +1097,7 @@ const Form = () => {
             <span className="tooltip-icon">i</span>{" "}
             {/* Ikon tooltip untuk Jumlah Penerima Manfaat */}
           </Tooltip>
+          <span className="indicator-form-description"><br/>{handleDescription("Jumlah Penerima Manfaat")}</span>
         </label>
       </div>
       <button type="submit" className="form-btn">
