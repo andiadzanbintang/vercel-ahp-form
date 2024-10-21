@@ -487,6 +487,8 @@ h2 {
   
   .iteration-selector span {
     margin-right: 1rem;
+    display: none;
+    transform: translateY(5px);
   }
   
   .iteration-buttons button {
