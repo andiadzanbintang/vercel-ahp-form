@@ -479,6 +479,10 @@ h2 {
     display: flex;
     justify-content: flex-end;
     margin-top: 2rem;
+    position: relative;
+    right: 40px;
+    top: 20px;
+
   }
   
   .iteration-selector span {
@@ -553,10 +557,14 @@ h2 {
 .all-result-head{
   width: fit-content;
   text-align: left;
-  font-weight: 700;
+  font-weight: 500;
   position: absolute;
   left: 5rem;
   top: 5rem;
+  font-size: 1.5rem;
+
+  padding-left: 20px;
+  border-left: 2px solid var(--blue-dark);
 }
 
 /* DUMMY */
@@ -676,6 +684,7 @@ h2 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
+  margin: 0 auto;
 }
 
 /* Title */
@@ -738,12 +747,14 @@ h2 {
 
 .set-iteration-container {
   background-color: #FFFFFF; /* Putih */
-  padding: 40px;
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
   text-align: center;
+  position: relative;
+  left: 20px;
 }
 
 /* Title */
@@ -817,6 +828,16 @@ h2 {
   font-weight: 500;
 }
 
+.admin-dashboard-title{
+  padding-left: 20px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 1.5rem;
+  transform: translateX(20px);
+  
+  border-left: 2px solid var(--blue-dark);
+}
+
 
 /* Responsif */
 @media (max-width: 768px) {
@@ -886,6 +907,13 @@ h2 {
 }
 
 @media (max-width: 480px) {
+  .navbar{
+    transform: translateX(70px);
+  }
+
+  .tutorial{
+    width: 100%;
+  }
   /* HALAMAN INDIKATOR */
   .lvl-1-group, .lvl-2-group {
       flex-direction: column;
@@ -957,7 +985,7 @@ h2 {
 .all-result-head {
   display: block;
   font-size: 1.2rem;
-  transform: translateY(15px);
+  transform: translateY(15px)
 }
 
 .iteration-selector{
@@ -965,12 +993,14 @@ h2 {
   justify-content: center;
   align-items: flex-start;
   margin: 0 auto;
-  transform: translateX(-11rem);
+
+  transform: translateX(250px) translateY(40px);
 }
 
 .iteration-selector span{
   padding-left: 10px;
   font-size: 12px;
+  display: none;
 }
 
 .iteration-selector button{
@@ -1024,5 +1054,18 @@ h2 {
 
     .description {
       font-size: 0.75rem;
+    }
+
+    .tutorial{
+      width: 135%;
+    }
+
+    .all-result-head{
+      width: 100%;
+      transform: translateY(-0.5px);
+    }
+
+    .navbar{
+      transform: translateX(120px);
     }
 }

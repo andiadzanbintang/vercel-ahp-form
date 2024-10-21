@@ -4,8 +4,8 @@ import AllResult from "../../components/AllResult";
 
 export default function AdminDashboard() {
   return (
-    <div>
-      <h1>Admin Dashboard</h1>
+    <div className="admin-dashboard-container">
+      <h1 className="admin-dashboard-title">Admin Dashboard</h1>
       <div className="set-iteration">
         <SetIteration />
       </div>

@@ -274,11 +274,11 @@ const Form = () => {
       case "ENPV":
         return "Economic Net Present Value adalah keuntungan netto suatu proyek berdasarkan nilai saat ini melalui analisis ekonomi.";
       case "ENBC":
-        return "Economic Net Benefit Cost Ratio menunjukkan berapa kali lipat benefit yang diperoleh dari biaya yang dikeluarkan.";
+        return "Economic Net Benefit Cost Ratio menunjukkan berapa kali lipat benefit yang diperoleh dari biaya yang dikeluarkan melalui analisis ekonomi.";
       case "EIRR":
-        return "Economic Internal Rate of Return adalah tingkat pengembalian ekonomi yang membuat ENPV sama dengan nol.";
+        return "Economic Internal Rate of Return adalah tingkat pengembalian ekonomi yang membuat ENPV sama dengan nol melalui analisis ekonomi.";
       case "PDRB":
-        return "PDRB sub-sektor menggambarkan nilai tambahan berdasarkan ICOR sebagai rasio antara tambahan investasi dan output.";
+        return "PDRB ICOR menggambarkan nilai PDRB yang dibangkitkan pada sub sektor tertentu akibat dari investasi pada sub sektor tersebut.";
       case "Multiplier Output":
         return "Output multiplier menunjukkan tambahan output pada suatu sektor dari peningkatan final demand sebesar Rp 1.";
       case "Backward Linkage":
@@ -286,7 +286,7 @@ const Form = () => {
       case "Forward Linkage":
         return "Forward Linkage mengukur seberapa besar suatu sektor mampu mendorong pertumbuhan sektor lain yang menggunakan inputnya.";
       case "Serapan Tenaga Kerja":
-        return "Multiplier tenaga kerja menunjukkan tambahan tenaga kerja yang diperlukan dari peningkatan final demand.";
+        return "Multiplier atau angka pengganda tenaga kerja menunjukkan berapa tambahan tenaga kerja yang diperlukan di suatu sub sektor atau lapangan usaha Jika ada tambahan final demand.";
       case "Jumlah Penerima Manfaat":
         return "Jumlah penerima manfaat adalah jumlah individu atau kelompok yang mendapatkan keuntungan langsung dari proyek.";
       default:

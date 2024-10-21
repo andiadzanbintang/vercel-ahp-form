@@ -25,7 +25,7 @@ router.post('/logout', logoutAdmin);
 router.get('/checkAuth', requireAdmin, checkAuth); 
 
 // Handle Form
-router.get('/getIteration', requireAdmin, getIteration)
+router.get('/getIteration', requireAdmin, getIteration) 
 router.put('/editIteration', requireAdmin, editIteration)
 router.get('/getAllComparisons', requireAdmin, getAllComparisons)
 

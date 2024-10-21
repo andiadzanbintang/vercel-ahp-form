@@ -5,7 +5,7 @@ const { validationResult } = require('express-validator');
 const formConfig = require("../models/formConfig");
 require("dotenv").config();
 
-const loginAdmin = async (req, res) => {
+const loginAdmin = async (req, res) => { 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
