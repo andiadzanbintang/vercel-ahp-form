@@ -13,6 +13,7 @@ const Form = () => {
   const [name, setName] = useState("");
   const [instansi, setInstansi] = useState("");
   const [jabatan, setJabatan] = useState("");
+  const [city, setCity] = useState("")
   const [level1, setLevel1] = useState({ IFE_ISL: 1 }); // Default value for level 1 comparison
   const [level2, setLevel2] = useState({
     financial_economy: 1,
@@ -238,6 +239,7 @@ const Form = () => {
       name: name,
       title: jabatan,
       instansi: instansi,
+      city:city,
       level_1: adjustedLevel1,
       level_2: adjustedLevel2,
       level_3: adjustedLevel3, // All level 3 comparisons
@@ -330,6 +332,22 @@ const Form = () => {
           value={instansi}
           onChange={(e) => setInstansi(e.target.value)} // Menangani perubahan input
         />
+      </div>
+
+      <div className="data-diri">
+        <label>Kota</label>
+        <select
+          required
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        >
+          <option value="" disabled>Pilih Kota</option>
+          <option value="Bitung">Bitung</option>
+          <option value="Jakarta">Jakarta</option>
+          <option value="Palembang">Palembang</option>
+          <option value="Balikpapan">Balikpapan</option>
+          <option value="Semarang">Semarang</option>
+        </select>
       </div>
 
       {/* LEVEL 1 */}

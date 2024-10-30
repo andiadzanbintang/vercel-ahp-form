@@ -14,7 +14,7 @@ router.use(cors({
 router.post('/submit', submitPairwiseComparison);
 
 // Rute untuk melakukan perhitungan AHP pada semua data yang ada.
-router.get('/calculate', calculateAHPWeights);
+router.get('/calculate', calculateAHPWeights); 
 
 router.get('/getAllResult', getALlWeights)
  

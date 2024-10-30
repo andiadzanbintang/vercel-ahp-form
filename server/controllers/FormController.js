@@ -12,9 +12,17 @@ const mongoSaniteze = require('mongo-sanitize')
  */
 const submitPairwiseComparison = async (req, res) => {
   try {
-    const { name, title, instansi, level_1, level_2, level_3 } = mongoSaniteze(req.body);
-    const config = await Config.find();
-    const iteration = config.length > 0 ? config[0].iteration : 0; // Menghindari error jika tidak ada config    
+    const { name, title, instansi, level_1, level_2, level_3, city } = mongoSaniteze(req.body);
+    const cityToIteration = {
+      Bitung: 0,
+      Jakarta: 1,
+      Palembang: 2,
+      Balikpapan: 3,
+      Semarang: 4
+    };
+
+    // Tetapkan nilai iteration berdasarkan input kota, atau default -1 jika tidak valid
+    const iteration = cityToIteration[city] ?? 6;
 
     // Membuat objek level_1
     const newLevel1 = {
@@ -367,10 +375,8 @@ const calculateWeights = (normalizedMatrix) => {
 
 const calculateAHPWeights = async (req, res) => {
   try {
-    const config = await Config.find(); 
-    const iteration = config.length > 0 ? config[0].iteration : 0;
-
-    const comparisonData = await Comparison.find({ iteration });
+    for (let iteration = 0; iteration <= 5; iteration++){
+      const comparisonData = await Comparison.find({ iteration });
 
     if (!comparisonData || comparisonData.length === 0) {
       return res.json([]);
@@ -462,14 +468,12 @@ const calculateAHPWeights = async (req, res) => {
       { new: true, upsert: true }
     );
 
+    }
+
     // Kirim hasil perhitungan sebagai respons
     res.status(200).json({
-      meanMatrixLevel1,
-      normalizedMatrixLevel1,
-      level1Weights: weightsLevel1,
-      level2Weights: weightsLevel2,
-      level3Weights: weightsLevel3,
-      iteration,
+      status:200,
+      message:"Success"
     });
   } catch (error) {
     console.error("Something went wrong:", error);

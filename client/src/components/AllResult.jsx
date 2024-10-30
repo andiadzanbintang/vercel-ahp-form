@@ -133,7 +133,7 @@ export default function AllResult() {
 
   const fetchFinalWeights = async () => {
     try {
-      await axios.get("/api/v1/form/calculate"); 
+      await axios.get("/api/v1/form/calculate");
       const response = await axios.get("/api/v1/form/getAllResult"); 
       setResults(response.data.result || []);
       setLoading(false);
@@ -177,7 +177,7 @@ export default function AllResult() {
 
   return (
     <div className="all-result-container">
-      <h3 className="all-result-head">Hasil Perhitungan AHP Iterasi  {selectedIteration}</h3>
+      <h3 className="all-result-head">Hasil Perhitungan AHP Kota  {selectedIteration === 0 ? "Bitung" : (selectedIteration === 1 ? "Jakarta" : (selectedIteration === 2 ? "Palembang" : (selectedIteration === 3 ? "Balikpapan" : "Semarang")))}</h3>
       <div className="iteration-selector">
         <span>Pilih Iterasi:</span>
         <div className="iteration-buttons">
@@ -186,7 +186,7 @@ export default function AllResult() {
               key={res.iteration}
               onClick={() => setSelectedIteration(res.iteration)}
             >
-              {res.iteration}
+              {res.iteration === 0 ? "Bitung" : (res.iteration === 1 ? "Jakarta" : (res.iteration === 2 ? "Palembang" : (res.iteration === 3 ? "Balikpapan" : "Semarang")))}
             </button>
           ))}
         </div>

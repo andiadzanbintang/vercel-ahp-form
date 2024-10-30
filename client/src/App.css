@@ -173,6 +173,12 @@ form {
     outline: none;
 }
 
+.data-diri select{
+  padding: 10px;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+}
+
 /* JUDUL TIAP LEVEL */
 h3.comparison-title{
     margin-bottom: 1.5rem;

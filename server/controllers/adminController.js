@@ -143,7 +143,7 @@ const editIteration = async (req, res) => {
       { new: true, upsert: true } // Buat dokumen baru jika tidak ada
     );
 
-    return res.status(200).json({
+    return res.status(200).json({ 
       status: 200,
       message: "Iteration updated successfully.",
       iteration: updatedConfig.iteration,
