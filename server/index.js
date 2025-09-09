@@ -17,16 +17,26 @@ mongoose.connect(process.env.MONGO_URL)
 app.set('trust proxy', true);
 // Middleware
 app.use(express.json({ limit: "50mb" }));
-
+ 
 app.use(helmet());
 app.use(expressMongoSanitize()); 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
+// ganti blok CORS di server:
+const allowed = [
+  process.env.FRONTEND_URL,
+  /https:\/\/.*\.vercel\.app$/ // izinkan preview vercel
+];
 app.use(cors({
   credentials: true,
-  origin: process.env.FRONTEND_URL
+  origin: (origin, cb) => {
+    if (!origin) return cb(null, true);
+    if (allowed.some(a => (a.test ? a.test(origin) : a === origin))) return cb(null, true);
+    cb(new Error('Not allowed by CORS'));
+  }
 }));
+
 
 // Routes
 app.use('/api/v1/form', require('../server/routes/formRoutes')); // form routes

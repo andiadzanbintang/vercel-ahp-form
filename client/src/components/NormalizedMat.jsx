@@ -4,11 +4,32 @@ import axios from "axios";
 // Header untuk setiap level
 const headers = {
   level1: ["IFE", "ISL"],
-  level2: ["Financial", "Economy", "Social", "Environment"],
+  level2: ["Financial & Economy", "Social & Environment"],
   level3: [
-    "FNPV", "FNBC", "FIRR", "ENPV", "ENBC", "EIRR",
-    "PDRB", "Multiplier", "Backward", "Forward",
-    "Serapan", "Jumlah Penerima"
+    // IFE
+    "Dampak terhadap pengembangan ekonomi lokal",
+    "Dampak terhadap keuntungan ekonomi jangka panjang",
+    "Dampak terhadap pemanfaatan sumber daya lokal",
+    "Kontribusi terhadap kehidupan lebih baik warga kota",
+    "Dampak multiplier & jejaring ekonomi/industri lain",
+    "Penerimaan langsung dari proyek",
+    "Pengaruh terhadap alokasi anggaran berjalan",
+    "Pengalokasian proyek di dalam APBD/APBN",
+    "Kebutuhan dukungan eksternal",
+    "Risiko finansial/ekonomi terhadap keberlanjutan proyek",
+    "Risiko politik terhadap keberlanjutan proyek",
+    "Strategi mitigasi risiko dalam penyelenggaraan proyek",
+    // ISL
+    "Dampak terhadap kualitas lingkungan sekitar",
+    "Kontribusi dalam keberlanjutan jangka panjang",
+    "Kontribusi terhadap kesehatan masyarakat lokal",
+    "Kontribusi terhadap adaptasi perubahan iklim",
+    "Kontribusi terhadap mitigasi perubahan iklim",
+    "Kontribusi peningkatan kualitas ruang publik kota",
+    "Dampak/risiko terhadap keanekaragaman hayati",
+    "Inovasi/keterbaruan untuk perbaikan masa depan",
+    "Dampak ke masyarakat akibat alih fungsi lahan",
+    "Perbaikan lingkungan masyarakat berpenghasilan rendah",
   ],
 };
 

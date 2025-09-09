@@ -18,4 +18,4 @@ router.get('/calculate', calculateAHPWeights);
 
 router.get('/getAllResult', getALlWeights)
  
-module.exports = router;
+module.exports = router; 

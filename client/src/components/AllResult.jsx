@@ -2,126 +2,149 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from "@mui/material";
 
-const indikatorData = {
-  level1: [
-    { title: "IFE", description: "Indeks Finansial Ekonomi digunakan untuk menilai performa ekonomi proyek dari sisi keuangan. Nilai indeks ini berkisar antara 0 dan 1. Nilai ini merupakan hasil kumulasi setiap indikator yang sudah dikalikan dengan bobot masing masing indikator. Nilai ini disusun oleh dua indikator yaitu indikator ekonomi dan finansial" },
-    { title: "ISL", description: "Indeks Sosial Lingkungan digunakan untuk mengukur dampak sosial dan lingkungan. Nilai indeks ini berkisar antara 0 dan 1. Nilai ini merupakan hasil kumulasi setiap indikator yang sudah dikalikan dengan bobot masing masing indikator. Nilai ini disusun oleh dua indikator yaitu indikator Sosial dan Lingkungan." },
-  ],
-  level2: [
-    { title: "Financial", description: "Mengukur aspek keuangan proyek seperti keuntungan dan investasi." },
-    { title: "Economy", description: "Mengukur dampak ekonomi seperti PDB dan nilai tambah." },
-    { title: "Social", description: "Menganalisis dampak sosial, seperti tenaga kerja yang terserap." },
-    { title: "Environment", description: "Menilai dampak lingkungan seperti penurunan emisi karbon." },
-  ],
-  level3: [
-    {
-      title: "FNPV",
-      description: "Financial Net Present Value adalah keuntungan netto (pendapatan bruto dikurangi biaya total) suatu proyek yang dihitung dengan analisis finansial dan sudah dinyatakan dalam nilai saat ini (present value).",
-      data_used_description: [
-        "Nilai pendapatan proyek yang sudah dihitung dengan analisis finansial dan dinyatakan dalam nilai saat ini (present value benefit).",
-        "Nilai biaya total proyek yang dihitung dengan analisis finansial dan dinyatakan dalam nilai saat ini."
-      ],
-      unit: ["Rp", "Rp"],
-      kriteria: ["Nilai positif atau lebih besar dari nol (>0)"]
-    },
-    {
-      title: "FNBC",
-      description: "Financial Net Benefit Cost Ratio adalah perbandingan antara FNPV yang bernilai positif dengan FNPV yang bernilai negatif. FNBC menggambarkan berapa kali lipat benefit yang dapat diperoleh dari biaya yang dikeluarkan.",
-      data_used_description: ["Nilai FNPV yang positif dan FNPV yang negatif"],
-      unit: ["Angka rasio"],
-      kriteria: ["Lebih besar dari satu (>1)"]
-    },
-    {
-      title: "FIRR",
-      description: "Financial Internal Rate of Return adalah tingkat keuntungan suatu proyek atau discount rate yang membuat FNPV sama dengan nol.",
-      data_used_description: ["Nilai FNPV"],
-      unit: ["%"],
-      kriteria: ["Lebih besar dari discount rate yang digunakan"]
-    },
-    {
-      title: "ENPV",
-      description: "Economic Net Present Value adalah keuntungan netto (pendapatan bruto dikurangi biaya total) suatu proyek yang dihitung dengan analisis ekonomi dan dinyatakan dalam nilai saat ini.",
-      data_used_description: [
-        "Nilai pendapatan proyek yang dihitung dengan analisis ekonomi dan dinyatakan dalam nilai saat ini (present value benefit).",
-        "Nilai biaya total proyek yang dihitung dengan analisis ekonomi dan dinyatakan dalam nilai saat ini."
-      ],
-      unit: ["Rp", "Rp"],
-      kriteria: ["Nilai positif atau lebih besar dari nol (>0)"]
-    },
-    {
-      title: "ENBC",
-      description: "Economic Net Benefit Cost Ratio adalah perbandingan antara ENPV yang positif dengan ENPV yang negatif. ENBC menunjukkan berapa kali lipat benefit yang diperoleh dari biaya yang dikeluarkan.",
-      data_used_description: ["Nilai ENPV yang positif dan ENPV yang negatif"],
-      unit: ["Angka rasio"],
-      kriteria: ["Lebih besar dari satu (>1)"]
-    },
-    {
-      title: "EIRR",
-      description: "Economic Internal Rate of Return adalah tingkat pengembalian ekonomi atau discount rate yang membuat ENPV sama dengan nol.",
-      data_used_description: ["Nilai ENPV"],
-      unit: ["%"],
-      kriteria: ["Lebih besar dari sosial discount rate yang digunakan"]
-    },
-    {
-      title: "PDRB",
-      description: "Nilai tambahan PDRB sub-sektor atau lapangan usaha sesuai dengan proyek yang dikerjakan yang diproyeksikan dari nilai ICOR (Incremental Capital Output Ratio). ICOR adalah rasio antara tambahan investasi dengan tambahan output atau PDRB.",
-      data_used_description: [
-        "Nilai ICOR lapangan usaha atau sub-sektor proyek.",
-        "Nilai investasi proyek."
-      ],
-      unit: ["Angka rasio", "Rp"],
-      kriteria: [
-        "Semakin rendah angka ICOR, semakin efisien.",
-        "Semakin besar nilai tambahan PDRB, semakin baik."
-      ]
-    },
-    {
-      title: "Multiplier Output",
-      description: "Output multiplier atau angka pengganda output menunjukkan berapa besar tambahan output pada suatu sub sektor atau lapangan usaha jika ada tambahan final demand (konsumsi, investasi, dan pengeluaran pemerintah) sebesar Rp 1 pada sub sektor atau lapangan usaha tersebut.",
-      data_used_description: [
-        "Nilai koefisien multiplier output dari tabel input-output.",
-        "Nilai investasi proyek."
-      ],
-      unit: ["Angka koefisien", "Rp"],
-      kriteria: ["Semakin besar tambahan output, semakin baik"]
-    },
-    {
-      title: "Backward Linkage",
-      description: "Backward Linkage atau keterkaitan ke hulu menunjukkan indeks daya penyebaran yang mengukur seberapa besar suatu sub sektor atau lapangan usaha mempunyai kemampuan menarik pertumbuhan sektor-sektor yang menyediakan input atau bahan baku produksinya.",
-      data_used_description: ["Nilai koefisien backward linkage dari tabel input-output."],
-      unit: ["Angka koefisien"],
-      kriteria: [
-        "Lebih besar dari satu (>1) menunjukkan daya penyebaran di atas rata-rata sektor ekonomi."
-      ]
-    },
-    {
-      title: "Forward Linkage",
-      description: "Forward Linkage atau keterkaitan ke hilir menunjukkan indeks derajat kepekaan yang mengukur seberapa besar suatu sub sektor atau lapangan usaha memiliki kemampuan mendorong pertumbuhan sektor lainnya yang mempergunakan input dari sub sektor atau lapangan usaha ini.",
-      data_used_description: ["Nilai koefisien forward linkage dari tabel input-output."],
-      unit: ["Angka koefisien"],
-      kriteria: [
-        "Lebih besar dari satu (>1) menunjukkan derajat kepekaan di atas rata-rata sektor ekonomi."
-      ]
-    },
-    {
-      title: "Serapan Tenaga Kerja",
-      description: "Multiplier atau angka pengganda tenaga kerja menunjukkan berapa tambahan tenaga kerja yang diperlukan di suatu sub sektor atau lapangan usaha Jika ada tambahan final demand (konsumsi rumah tangga, pengeluaran pemerintah, atau investasi) sebesar Rp 1 di sub sektor atau lapangan usaha tersebut.",
-      data_used_description: [
-        "Nilai koefisien multiplier tenaga kerja.",
-        "Nilai investasi proyek."
-      ],
-      unit: ["Angka koefisien", "Rp"],
-      kriteria: ["Semakin banyak tenaga kerja terserap, semakin baik"]
-    },
-    {
-      title: "Jumlah Penerima Manfaat",
-      description: "Jumlah penerima manfaat langsung yang mendapatkan keuntungan dari proyek.",
-      data_used_description: ["Jumlah penerima manfaat proyek."],
-      unit: ["Orang"],
-      kriteria: ["Semakin banyak penerima manfaat, semakin baik"]
-    }
-  ],
-};
+// === Daftar indikator (lengkap 22) dengan kode ===
+const indikatorData = [
+  { code: "IFE1",  title: "Dampak terhadap pengembangan ekonomi lokal",
+    description: "Mengukur kontribusi proyek dalam mengembangkan potensi ekonomi daerah.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin besar kontribusi, semakin baik"] },
+  { code: "IFE2",  title: "Dampak terhadap keuntungan ekonomi jangka panjang",
+    description: "Mengukur keberlanjutan keuntungan ekonomi dari proyek.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin tinggi keberlanjutan, semakin baik"] },
+  { code: "IFE3",  title: "Dampak terhadap pemanfaatan sumber daya lokal",
+    description: "Mengukur sejauh mana proyek menggunakan sumber daya lokal.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin besar pemanfaatan lokal, semakin baik"] },
+  { code: "IFE4",  title: "Kontribusi terhadap kehidupan lebih baik warga kota",
+    description: "Mengukur dampak proyek terhadap kualitas hidup masyarakat.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin positif dampaknya, semakin baik"] },
+  { code: "IFE5",  title: "Dampak multiplier & jejaring ekonomi/industri lain",
+    description: "Mengukur seberapa besar proyek memicu efek pengganda ekonomi.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin tinggi multiplier, semakin baik"] },
+  { code: "IFE6",  title: "Penerimaan langsung dari proyek",
+    description: "Mengukur penerimaan (revenue) yang diperoleh langsung dari proyek.",
+    unit: ["Rp"], kriteria: ["Semakin tinggi penerimaan, semakin baik"] },
+  { code: "IFE7",  title: "Pengaruh terhadap alokasi anggaran berjalan",
+    description: "Mengukur apakah proyek mengganggu atau mendukung alokasi anggaran rutin.",
+    unit: ["Skor 0–1"], kriteria: ["Tidak mengganggu anggaran rutin"] },
+  { code: "IFE8",  title: "Pengalokasian proyek di dalam APBD/APBN",
+    description: "Mengukur kesiapan proyek dimasukkan dalam anggaran pemerintah.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin jelas alokasinya, semakin baik"] },
+  { code: "IFE9",  title: "Kebutuhan dukungan eksternal",
+    description: "Mengukur ketergantungan proyek pada dukungan eksternal.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin rendah ketergantungan, semakin baik"] },
+  { code: "IFE10", title: "Risiko finansial/ekonomi terhadap keberlanjutan proyek",
+    description: "Mengidentifikasi potensi risiko finansial atau ekonomi.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin rendah risiko, semakin baik"] },
+  { code: "IFE11", title: "Risiko politik terhadap keberlanjutan proyek",
+    description: "Mengukur sejauh mana stabilitas politik memengaruhi proyek.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin rendah risiko politik, semakin baik"] },
+  { code: "IFE12", title: "Strategi mitigasi risiko dalam penyelenggaraan proyek",
+    description: "Menilai kesiapan mitigasi risiko yang disiapkan proyek.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin lengkap mitigasi, semakin baik"] },
+
+  { code: "ISL1",  title: "Dampak terhadap kualitas lingkungan sekitar",
+    description: "Mengukur dampak proyek pada kualitas lingkungan (air, udara, tanah).",
+    unit: ["Skor 0–1"], kriteria: ["Dampak positif lebih tinggi lebih baik"] },
+  { code: "ISL2",  title: "Kontribusi dalam keberlanjutan jangka panjang",
+    description: "Mengukur keberlanjutan proyek untuk lingkungan.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin tinggi kontribusi, semakin baik"] },
+  { code: "ISL3",  title: "Kontribusi terhadap kesehatan masyarakat lokal",
+    description: "Mengukur pengaruh proyek pada kesehatan publik.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin besar kontribusi, semakin baik"] },
+  { code: "ISL4",  title: "Kontribusi terhadap adaptasi perubahan iklim",
+    description: "Menilai kontribusi proyek dalam adaptasi perubahan iklim.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin adaptif, semakin baik"] },
+  { code: "ISL5",  title: "Kontribusi terhadap mitigasi perubahan iklim",
+    description: "Menilai kontribusi proyek dalam mengurangi emisi atau risiko iklim.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin tinggi kontribusi mitigasi, semakin baik"] },
+  { code: "ISL6",  title: "Kontribusi peningkatan kualitas ruang publik kota",
+    description: "Mengukur dampak proyek pada kualitas ruang publik.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin positif dampaknya, semakin baik"] },
+  { code: "ISL7",  title: "Dampak/risiko terhadap keanekaragaman hayati",
+    description: "Menilai apakah proyek mengancam atau mendukung biodiversitas.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin kecil risiko, semakin baik"] },
+  { code: "ISL8",  title: "Inovasi/keterbaruan untuk perbaikan masa depan",
+    description: "Mengukur tingkat inovasi proyek untuk keberlanjutan.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin tinggi inovasi, semakin baik"] },
+  { code: "ISL9",  title: "Dampak ke masyarakat akibat alih fungsi lahan",
+    description: "Mengukur dampak sosial akibat perubahan penggunaan lahan.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin kecil dampak negatif, semakin baik"] },
+  { code: "ISL10", title: "Perbaikan lingkungan masyarakat berpenghasilan rendah",
+    description: "Mengukur manfaat proyek bagi masyarakat berpenghasilan rendah.",
+    unit: ["Skor 0–1"], kriteria: ["Semakin besar manfaat, semakin baik"] },
+];
+
+// ===== UI Helpers: Skeleton & Empty State (Tampilan saja) =====
+const PlaceholderRow = () => (
+  <tr>
+    <td style={{ padding: 8 }}>
+      <div style={{ height: 12, background: "#f3f4f6", borderRadius: 4, width: "90%" }} />
+    </td>
+    <td style={{ padding: 8, textAlign: "right" }}>
+      <div style={{ height: 12, background: "#f3f4f6", borderRadius: 4, width: 64, marginLeft: "auto" }} />
+    </td>
+  </tr>
+);
+
+const PlaceholderTable = ({ title, rows = 6 }) => (
+  <div className="table-card">
+    <h4 style={{ marginBottom: 8 }}>{title}</h4>
+    <table className="weights-table" style={{ width: "100%", borderCollapse: "collapse" }}>
+      <thead>
+        <tr>
+          <th style={{ textAlign: "left", borderBottom: "1px solid #eee", padding: 8 }}>Indikator</th>
+          <th style={{ textAlign: "right", borderBottom: "1px solid #eee", padding: 8 }}>Bobot</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Array.from({ length: rows }).map((_, i) => <PlaceholderRow key={i} />)}
+        <tr>
+          <td style={{ padding: 8, borderTop: "2px solid #000", fontWeight: 600 }}>Total</td>
+          <td style={{ padding: 8, borderTop: "2px solid #000", textAlign: "right", fontWeight: 600 }}>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+);
+
+const LoadingState = () => (
+  <div className="tables-wrapper" style={{ display: "grid", gap: 24, gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
+    <PlaceholderTable title="Indeks Finansial & Ekonomi (IFE)" />
+    <PlaceholderTable title="Indeks Sosial & Lingkungan (ISL)" />
+  </div>
+);
+
+const EmptyState = ({ message = "Belum ada data perhitungan.", onRetry }) => (
+  <div style={{ textAlign: "center", padding: "32px 16px" }}>
+    <div style={{ fontSize: 40, marginBottom: 12 }}>📊</div>
+    <h4 style={{ margin: 0 }}>{message}</h4>
+    <p style={{ color: "#6b7280", marginTop: 8, marginBottom: 16 }}>
+      Lengkapi penilaian atau coba hitung ulang untuk melihat bobot IFE & ISL.
+    </p>
+    {onRetry && (
+      <button
+        onClick={onRetry}
+        style={{
+          padding: "10px 14px",
+          borderRadius: 8,
+          border: "1px solid #e5e7eb",
+          background: "white",
+          cursor: "pointer",
+        }}
+      >
+        🔄 Coba Hitung Ulang
+      </button>
+    )}
+
+    {/* tampilkan placeholder tabel agar tetap informatif dan menarik */}
+    <div className="tables-wrapper" style={{ display: "grid", gap: 24, gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", marginTop: 24 }}>
+      <PlaceholderTable title="Indeks Finansial & Ekonomi (IFE)" />
+      <PlaceholderTable title="Indeks Sosial & Lingkungan (ISL)" />
+    </div>
+  </div>
+);
+
+
+const CITY_BY_ITERATION = ["Bitung", "Jakarta", "Palembang", "Balikpapan", "Semarang"];
 
 export default function AllResult() {
   const [results, setResults] = useState([]);
@@ -129,12 +152,17 @@ export default function AllResult() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
-  const [dialogData, setDialogData] = useState({ title: '', description: '' });
+  const [dialogData, setDialogData] = useState({ title: "", description: "" });
+
+  const formatNumber = (val) => {
+    const n = Number(val);
+    return Number.isFinite(n) ? n.toFixed(4) : "0.0000";
+  };
 
   const fetchFinalWeights = async () => {
     try {
-      await axios.get("/api/v1/form/calculate");
-      const response = await axios.get("/api/v1/form/getAllResult"); 
+      await axios.get("/api/v1/form/calculate");          // memicu perhitungan
+      const response = await axios.get("/api/v1/form/getAllResult");
       setResults(response.data.result || []);
       setLoading(false);
     } catch (err) {
@@ -147,23 +175,15 @@ export default function AllResult() {
     fetchFinalWeights();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
-  if (results.length === 0) return <p>Belum ada data perhitungan.</p>;
+  if (loading) return <LoadingState />;
+  if (error) return <EmptyState message="Saat ini data belum bisa dimuat." onRetry={fetchFinalWeights} />;
+  if (results.length === 0) return <EmptyState onRetry={fetchFinalWeights} />;
 
-  const level1Indicators = ["IFE", "ISL"];
-  const level2Indicators = ["Financial", "Economy", "Social", "Environment"];
-  const level3Indicators = [
-    "FNPV", "FNBC", "FIRR", "ENPV", "ENBC", "EIRR",
-    "PDRB", "Multiplier", "Backward", "Forward", "Serapan", "JumlahPenerima",
-  ];
 
   const result = results.find((r) => r.iteration === selectedIteration) || {};
 
-  const formatNumber = (num) => (num ? num.toFixed(2) : "0.00");
-
-  const handleIndicatorClick = (level, title) => {
-    const indicator = indikatorData[level].find(ind => ind.title === title);
+  const handleIndicatorClick = (title) => {
+    const indicator = indikatorData.find((ind) => ind.title === title);
     if (indicator) {
       setDialogData(indicator);
       setOpenDialog(true);
@@ -172,12 +192,24 @@ export default function AllResult() {
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
-    setDialogData({ title: '', description: '' });
+    setDialogData({ title: "", description: "" });
   };
+
+  // === PEMISAHAN DATA UNTUK TAMPILAN TABEL ===
+  const indikatorIFE = indikatorData.filter(ind => ind.code.startsWith("IFE"));
+  const indikatorISL = indikatorData.filter(ind => ind.code.startsWith("ISL"));
+  const getWeight = (code) => Number(result.level3Weights?.[code]) || 0;
+
+  const totalIFE = indikatorIFE.reduce((s, ind) => s + getWeight(ind.code), 0);
+  const totalISL = indikatorISL.reduce((s, ind) => s + getWeight(ind.code), 0);
 
   return (
     <div className="all-result-container">
-      <h3 className="all-result-head">Hasil Perhitungan AHP Kota  {selectedIteration === 0 ? "Bitung" : (selectedIteration === 1 ? "Jakarta" : (selectedIteration === 2 ? "Palembang" : (selectedIteration === 3 ? "Balikpapan" : "Semarang")))}</h3>
+      <h3 className="all-result-head">
+        Hasil Perhitungan AHP Kota {CITY_BY_ITERATION[selectedIteration] ?? "—"}
+      </h3>
+
+      {/* Pilih Iterasi */}
       <div className="iteration-selector">
         <span>Pilih Iterasi:</span>
         <div className="iteration-buttons">
@@ -186,65 +218,96 @@ export default function AllResult() {
               key={res.iteration}
               onClick={() => setSelectedIteration(res.iteration)}
             >
-              {res.iteration === 0 ? "Bitung" : (res.iteration === 1 ? "Jakarta" : (res.iteration === 2 ? "Palembang" : (res.iteration === 3 ? "Balikpapan" : "Semarang")))}
+              {CITY_BY_ITERATION[res.iteration] ?? `Iterasi ${res.iteration}`}
             </button>
           ))}
         </div>
       </div>
-      
-      <div className="result-container">
-        {/* Level 1 */}
-        <ul className="result-item level-1">
-          {level1Indicators.map((indicator) => (
-            <li key={indicator} className={indicator} onClick={() => handleIndicatorClick('level1', indicator)}>
-              <h1>{indicator}</h1>
-              <h2>{formatNumber(result.level1Weights?.[indicator])}</h2>
-            </li>
-          ))}
-        </ul>
 
-        {/* Level 2 */}
-        <ul className="result-item level-2">
-          {level2Indicators.map((indicator) => (
-            <li key={indicator} className={indicator} onClick={() => handleIndicatorClick('level2', indicator)}>
-              <h2>{indicator === "Financial" ? "Finansial" : (indicator === "Economy" ? "Ekonomi" : (indicator === "Social" ? "Sosial" : "Lingkungan"))}</h2>
-              <h3>{formatNumber(result.level2Weights?.[indicator])}</h3>
-            </li>
-          ))}
-        </ul>
+      {/* === TAMPILAN: TABEL TERPISAH IFE & ISL === */}
+      <div className="tables-wrapper" style={{ display: "grid", gap: 24, gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
+        {/* Tabel IFE */}
+        <div className="table-card">
+          <h4>Indeks Finansial & Ekonomi (IFE)</h4>
+          <table className="weights-table" style={{ width: "100%", borderCollapse: "collapse" }}>
+            <thead>
+              <tr>
+                <th style={{ textAlign: "left", borderBottom: "1px solid #ddd", padding: "8px" }}>Indikator</th>
+                <th style={{ textAlign: "right", borderBottom: "1px solid #ddd", padding: "8px" }}>Bobot</th>
+              </tr>
+            </thead>
+            <tbody>
+              {indikatorIFE.map(ind => (
+                <tr key={ind.code}>
+                  <td
+                    style={{ padding: "8px", cursor: "pointer" }}
+                    onClick={() => handleIndicatorClick(ind.title)}
+                    title="Klik untuk detail"
+                  >
+                    {ind.title}
+                  </td>
+                  <td style={{ padding: "8px", textAlign: "right", fontVariantNumeric: "tabular-nums" }}>
+                    {formatNumber(getWeight(ind.code))}
+                  </td>
+                </tr>
+              ))}
+              <tr>
+                <td style={{ padding: "8px", borderTop: "2px solid #000", fontWeight: 600 }}>Total</td>
+                <td style={{ padding: "8px", borderTop: "2px solid #000", textAlign: "right", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>
+                  {formatNumber(totalIFE)}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Tabel ISL */}
+        <div className="table-card">
+          <h4>Indeks Sosial & Lingkungan (ISL)</h4>
+          <table className="weights-table" style={{ width: "100%", borderCollapse: "collapse" }}>
+            <thead>
+              <tr>
+                <th style={{ textAlign: "left", borderBottom: "1px solid #ddd", padding: "8px" }}>Indikator</th>
+                <th style={{ textAlign: "right", borderBottom: "1px solid #ddd", padding: "8px" }}>Bobot</th>
+              </tr>
+            </thead>
+            <tbody>
+              {indikatorISL.map(ind => (
+                <tr key={ind.code}>
+                  <td
+                    style={{ padding: "8px", cursor: "pointer" }}
+                    onClick={() => handleIndicatorClick(ind.title)}
+                    title="Klik untuk detail"
+                  >
+                    {ind.title}
+                  </td>
+                  <td style={{ padding: "8px", textAlign: "right", fontVariantNumeric: "tabular-nums" }}>
+                    {formatNumber(getWeight(ind.code))}
+                  </td>
+                </tr>
+              ))}
+              <tr>
+                <td style={{ padding: "8px", borderTop: "2px solid #000", fontWeight: 600 }}>Total</td>
+                <td style={{ padding: "8px", borderTop: "2px solid #000", textAlign: "right", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>
+                  {formatNumber(totalISL)}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-
-      {/* Level 3 */}
-      <ul className="result-item level-3">
-        {level3Indicators.map((indicator) => (
-          <li key={indicator} className={indicator} onClick={() => handleIndicatorClick('level3', indicator)}>
-            <h4>{indicator}</h4>
-            <p>{formatNumber(result.level3Weights?.[indicator])}</p>
-          </li>
-        ))}
-      </ul>
 
       {/* Dialog Box */}
       <Dialog open={openDialog} onClose={handleCloseDialog}>
-        <DialogTitle>{dialogData.title}</DialogTitle> 
+        <DialogTitle>{dialogData.title}</DialogTitle>
         <DialogContent>
           <p>{dialogData.description}</p>
-          {dialogData.data_used_description && (
-            <div>
-              <h4>Data Digunakan:</h4>
-              <ul>
-                {dialogData.data_used_description.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          )}
           {dialogData.unit && (
             <div>
               <h4>Unit:</h4>
               <ul>
-                {dialogData.unit.map((item, index) => (
-                  <li key={index}>{item}</li>
+                {dialogData.unit.map((item, idx) => (
+                  <li key={idx}>{item}</li>
                 ))}
               </ul>
             </div>
@@ -253,8 +316,8 @@ export default function AllResult() {
             <div>
               <h4>Kriteria:</h4>
               <ul>
-                {dialogData.kriteria.map((item, index) => (
-                  <li key={index}>{item}</li>
+                {dialogData.kriteria.map((item, idx) => (
+                  <li key={idx}>{item}</li>
                 ))}
               </ul>
             </div>

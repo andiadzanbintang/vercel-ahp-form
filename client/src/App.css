@@ -138,7 +138,7 @@ p.dropdown-note{
 
 
 /* FORM PAGE */
-/* KONTAINER UTAMA */
+/* KONTAINER UTAMA */ 
 form {
     width: 100%;
     margin: 2rem auto;
@@ -273,6 +273,13 @@ p.show-value {
     cursor: pointer;
 }
 
+.slider-value {
+    font-weight: bold;
+    text-align: center;
+    color: #000;
+    position: relative;
+    top: 50px;
+}
 /* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
     .comparison {

@@ -4,31 +4,44 @@ const ahpResultSchema = new mongoose.Schema({
   iteration: {
     type: Number,
     required: true,
-    unique: true, // Agar tidak ada duplikasi iterasi yang sama
+    unique: true, // Tidak boleh ada duplikasi iterasi
   },
   level1Weights: {
     IFE: Number,
     ISL: Number,
   },
   level2Weights: {
-    Financial: Number, 
+    Financial: Number,
     Economy: Number,
     Social: Number,
     Environment: Number,
   },
+  // Level 3 sesuai kesepakatan: IFE (12) + ISL (10)
   level3Weights: {
-    FNPV: Number,
-    FNBC: Number,
-    FIRR: Number,
-    ENPV: Number,
-    ENBC: Number,
-    EIRR: Number,
-    PDRB: Number,
-    Multiplier: Number,
-    Backward: Number,
-    Forward: Number,
-    Serapan: Number,
-    JumlahPenerima: Number,
+    // IFE
+    IFE1: Number,
+    IFE2: Number,
+    IFE3: Number,
+    IFE4: Number,
+    IFE5: Number,
+    IFE6: Number,
+    IFE7: Number,
+    IFE8: Number,
+    IFE9: Number,
+    IFE10: Number,
+    IFE11: Number,
+    IFE12: Number,
+    // ISL
+    ISL1: Number,
+    ISL2: Number,
+    ISL3: Number,
+    ISL4: Number,
+    ISL5: Number,
+    ISL6: Number,
+    ISL7: Number,
+    ISL8: Number,
+    ISL9: Number,
+    ISL10: Number,
   },
   createdAt: {
     type: Date,

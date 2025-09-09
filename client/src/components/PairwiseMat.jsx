@@ -4,11 +4,32 @@ import axios from "axios";
 // Nama-nama indikator berdasarkan level
 const headers = {
   level1: ["IFE", "ISL"],
-  level2: ["Financial", "Economy", "Social", "Environment"],
+  level2: ["Financial & Economy", "Social & Environment"],
   level3: [
-    "FNPV", "FNBC", "FIRR", "ENPV", "ENBC", "EIRR", 
-    "PDRB", "Multiplier", "Backward", "Forward", 
-    "Serapan", "Jumlah Penerima"
+    // IFE
+    "Dampak terhadap pengembangan ekonomi lokal",
+    "Dampak terhadap keuntungan ekonomi jangka panjang",
+    "Dampak terhadap pemanfaatan sumber daya lokal",
+    "Kontribusi terhadap kehidupan lebih baik warga kota",
+    "Dampak multiplier & jejaring ekonomi/industri lain",
+    "Penerimaan langsung dari proyek",
+    "Pengaruh terhadap alokasi anggaran berjalan",
+    "Pengalokasian proyek di dalam APBD/APBN",
+    "Kebutuhan dukungan eksternal",
+    "Risiko finansial/ekonomi terhadap keberlanjutan proyek",
+    "Risiko politik terhadap keberlanjutan proyek",
+    "Strategi mitigasi risiko dalam penyelenggaraan proyek",
+    // ISL
+    "Dampak terhadap kualitas lingkungan sekitar",
+    "Kontribusi dalam keberlanjutan jangka panjang",
+    "Kontribusi terhadap kesehatan masyarakat lokal",
+    "Kontribusi terhadap adaptasi perubahan iklim",
+    "Kontribusi terhadap mitigasi perubahan iklim",
+    "Kontribusi peningkatan kualitas ruang publik kota",
+    "Dampak/risiko terhadap keanekaragaman hayati",
+    "Inovasi/keterbaruan untuk perbaikan masa depan",
+    "Dampak ke masyarakat akibat alih fungsi lahan",
+    "Perbaikan lingkungan masyarakat berpenghasilan rendah",
   ],
 };
 
@@ -48,10 +69,10 @@ const PairwiseMat = () => {
 
   // Fungsi untuk menampilkan matriks dengan header
   const renderMatrixWithHeader = (matrix, header) => (
-    <table>
+    <table style={{ borderCollapse: "collapse", marginBottom: "20px" }}>
       <thead>
         <tr>
-          <th></th> {/* Cell kosong di pojok kiri atas */}
+          <th style={{ padding: "8px", border: "1px solid #ddd" }}></th> {/* Cell kosong */}
           {header.map((colName, index) => (
             <th key={index} style={{ padding: "8px", border: "1px solid #ddd" }}>
               {colName}
@@ -82,7 +103,7 @@ const PairwiseMat = () => {
       <div>
         <h3>Level 1 Matrix</h3>
         {matrices.level1Matrices.map((matrix, index) => (
-          <div key={index} style={{ marginBottom: "20px" }}>
+          <div key={index}>
             {renderMatrixWithHeader(matrix, headers.level1)}
           </div>
         ))}
@@ -92,7 +113,7 @@ const PairwiseMat = () => {
       <div>
         <h3>Level 2 Matrix</h3>
         {matrices.level2Matrices.map((matrix, index) => (
-          <div key={index} style={{ marginBottom: "20px" }}>
+          <div key={index}>
             {renderMatrixWithHeader(matrix, headers.level2)}
           </div>
         ))}
@@ -102,7 +123,7 @@ const PairwiseMat = () => {
       <div>
         <h3>Level 3 Matrix</h3>
         {matrices.level3Matrices.map((matrix, index) => (
-          <div key={index} style={{ marginBottom: "20px" }}>
+          <div key={index}>
             {renderMatrixWithHeader(matrix, headers.level3)}
           </div>
         ))}
