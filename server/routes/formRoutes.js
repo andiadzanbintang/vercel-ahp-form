@@ -5,10 +5,10 @@ const { calculateAHPWeights, submitPairwiseComparison, getALlWeights } = require
 
 const router = express.Router();
 
-router.use(cors({
-  credentials: true,
-  origin: process.env.FRONTEND_URL
-})) 
+// router.use(cors({
+//   credentials: true,
+//   origin: process.env.FRONTEND_URL
+// })) 
 
 // Rute untuk mengirimkan data perbandingan berpasangan (pairwise comparison).
 router.post('/submit', submitPairwiseComparison);
