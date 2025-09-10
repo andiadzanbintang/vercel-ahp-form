@@ -24,18 +24,11 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
 // ganti blok CORS di server:
-const allowed = [
-  process.env.FRONTEND_URL,
-  /https:\/\/.*\.vercel\.app$/ // izinkan preview vercel
-];
 app.use(cors({
+  origin: true,
   credentials: true,
-  origin: (origin, cb) => {
-    if (!origin) return cb(null, true);
-    if (allowed.some(a => (a.test ? a.test(origin) : a === origin))) return cb(null, true);
-    cb(new Error('Not allowed by CORS'));
-  }
 }));
+
 
 
 // Routes
