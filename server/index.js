@@ -24,10 +24,10 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
 // ganti blok CORS di server:
-app.use(cors({
-  origin: true,
-  credentials: true,
-}));
+// app.use(cors({
+//   origin: true,
+//   credentials: true,
+// }));
 
 
 
