@@ -1,5 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "https://vercel-ahp-form.vercel.app/api/$1" }
-  ]
-}
