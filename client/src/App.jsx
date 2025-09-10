@@ -22,20 +22,20 @@ function App() {
   // Pengecekan untuk menentukan Navbar yang ditampilkan
   const isAdminRoute = location.pathname.startsWith('/admin');
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        if (isAdminRoute) {  // Jalankan checkAuth hanya di rute admin
-          await axios.get('/api/v1/admin/checkAuth'); 
-          setIsAuth(true);
-        }
-      } catch (error) {
-        console.error("Something went wrong:", error)
-        setIsAuth(false);
-      }
-    };
-    checkAuth();
-  }, [isAdminRoute]); // Jalankan ulang hanya jika isAdminRoute berubah
+  // useEffect(() => {
+  //   const checkAuth = async () => {
+  //     try {
+  //       if (isAdminRoute) {  // Jalankan checkAuth hanya di rute admin
+  //         await axios.get('/api/v1/admin/checkAuth'); 
+  //         setIsAuth(true);
+  //       }
+  //     } catch (error) {
+  //       console.error("Something went wrong:", error)
+  //       setIsAuth(false);
+  //     }
+  //   };
+  //   checkAuth();
+  // }, [isAdminRoute]); 
 
   if (isAuth === null && isAdminRoute) {
     return <div>Memuat...</div>; 
