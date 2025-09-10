@@ -131,7 +131,7 @@ const Form = () => {
     };
 
     try {
-      await axios.post("/api/v1/form/submit", data);
+      await axios.post("/api/v1/form/submit", data); 
       toast.success("Data successfully submitted!");
       setTimeout(() => { navigate("/"); }, 2000);
     } catch (error) {
