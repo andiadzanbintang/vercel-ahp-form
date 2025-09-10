@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express');
-const { calculateAHPWeights, submitPairwiseComparison, getALlWeights } = require('../controllers/FormController');
+const { calculateAHPWeights, submitPairwiseComparison, getAllWeights } = require('../controllers/FormController');
 
 const router = express.Router();
 
@@ -10,6 +10,6 @@ router.post('/submit', submitPairwiseComparison);
 // Rute untuk melakukan perhitungan AHP pada semua data yang ada.
 router.get('/calculate', calculateAHPWeights); 
 
-router.get('/getAllResult', getALlWeights)
+router.get('/getAllResult', getAllWeights)
  
 module.exports = router; 

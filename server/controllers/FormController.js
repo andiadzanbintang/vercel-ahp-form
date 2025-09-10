@@ -338,7 +338,7 @@ const getAllWeights = async (req, res) => {
       result,
     });
   } catch (error) {
-    console.error('getALlWeights error:', error);
+    console.error('getAllWeights error:', error);
     return res.status(500).json({
       status: 500,
       message: 'Something went wrong while getting final data',
@@ -350,5 +350,5 @@ module.exports = {
   calculateAHPWeights,
   submitPairwiseComparison,
   getAllComparisons,
-  getALlWeights,
+  getAllWeights,
 };
