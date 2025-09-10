@@ -24,7 +24,11 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin: [
+    "https://lhbappenas.fun",
+    "https://www.lhbappenas.fun",
+    process.env.FRONTEND_URL
+  ],
   credentials: true,
 }));
 
