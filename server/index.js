@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGO_URL)
   .catch((err) => console.log('Something went wrong:', err));
 
 
-app.set('trust proxy', true);
+// app.set('trust proxy', true);
 // Middleware
 app.use(express.json({ limit: "50mb" }));
  
