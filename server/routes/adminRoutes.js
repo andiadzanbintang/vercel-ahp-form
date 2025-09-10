@@ -15,10 +15,10 @@ const {
 const { requireAdmin, validateLogin } = require('../middleware/authMiddleware');
 const { getAllComparisons } = require('../controllers/FormController');
 
-router.use(cors({
-  credentials: true,
-  origin: process.env.FRONTEND_URL 
-})) 
+// router.use(cors({
+//   credentials: true,
+//   origin: process.env.FRONTEND_URL 
+// })) 
 
 router.post('/login', validateLogin, loginAdmin);
 router.post('/logout', logoutAdmin);
