@@ -25,9 +25,14 @@ app.use(express.urlencoded({ extended: false }));
 
 // ganti blok CORS di server:
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin: [
+    process.env.FRONTEND_URL,  // ambil dari .env
+    "https://lhbappenas.fun", // domain utama
+    "https://www.lhbappenas.fun" // kalau ada www
+  ],
   credentials: true,
 }));
+
 
 // Routes
 app.use('/api/v1/form', require('../server/routes/formRoutes')); // form routes
