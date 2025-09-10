@@ -12,8 +12,8 @@ import './App.css'
 import Navbar from './components/Navbar';
  
 
-// axios.defaults.baseURL = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
-// axios.defaults.withCredentials = true
+axios.defaults.baseURL = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL;
+axios.defaults.withCredentials = true
 
 function App() {
   const [isAuth, setIsAuth] = useState(null); // null: loading, false: not auth, true: auth
