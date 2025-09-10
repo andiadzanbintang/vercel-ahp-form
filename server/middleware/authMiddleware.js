@@ -24,7 +24,7 @@ const requireAdmin = async (req, res, next) => {
         }
 
         // Cek apakah peran admin sesuai
-        if (decoded.role !== 'admin') {
+        if (decoded.role !== 'admin') { 
             return res.status(403).json({ error: 'Forbidden! Access is denied.' });
         } 
 

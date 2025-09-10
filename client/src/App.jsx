@@ -23,19 +23,25 @@ function App() {
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        if (isAdminRoute) {  // Jalankan checkAuth hanya di rute admin
-          await axios.get('/api/v1/admin/checkAuth'); 
-          setIsAuth(true);
-        }
-      } catch (error) {
-        console.error("Something went wrong:", error)
-        setIsAuth(false);
-      }
-    };
-    checkAuth();
-  }, [isAdminRoute]); // Jalankan ulang hanya jika isAdminRoute berubah
+  // const checkAuth = async () => {
+  //   try {
+  //     if (isAdminRoute) {  // Jalankan checkAuth hanya di rute admin
+  //       await axios.get('/api/v1/admin/checkAuth'); 
+  //       setIsAuth(true);
+  //     }
+  //   } catch (error) {
+  //     console.error("Something went wrong:", error)
+  //     setIsAuth(false);
+  //   }
+  // };
+  // checkAuth();
+
+  // sementara: langsung anggap sudah login
+  if (isAdminRoute) {
+    setIsAuth(true);
+  }
+}, [isAdminRoute]);
+// Jalankan ulang hanya jika isAdminRoute berubah
 
   if (isAuth === null && isAdminRoute) {
     return <div>Memuat...</div>; 
