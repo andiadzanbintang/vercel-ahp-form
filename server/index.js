@@ -23,13 +23,10 @@ app.use(expressMongoSanitize());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
-// ganti blok CORS di server:
-// app.use(cors({
-//   origin: true,
-//   credentials: true,
-// }));
-
-
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
+}));
 
 // Routes
 app.use('/api/v1/form', require('../server/routes/formRoutes')); // form routes
