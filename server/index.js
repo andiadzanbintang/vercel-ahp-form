@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGO_URL)
   .catch((err) => console.log('Something went wrong:', err));
 
 
-// app.set('trust proxy', true);
+app.set('trust proxy', true);
 // Middleware
 app.use(express.json({ limit: "50mb" }));
  
@@ -23,12 +23,9 @@ app.use(expressMongoSanitize());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
+// ganti blok CORS di server:
 app.use(cors({
-  origin: [
-    "https://lhbappenas.fun",
-    "https://www.lhbappenas.fun",
-    process.env.FRONTEND_URL
-  ],
+  origin: process.env.FRONTEND_URL,
   credentials: true,
 }));
 

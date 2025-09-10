@@ -325,7 +325,7 @@ const getAllComparisons = async (req, res) => {
 // ---------------------------
 // Controller: Ambil Semua Hasil (AHPResult)
 // ---------------------------
-const getALlWeights = async (req, res) => {
+const getAllWeights = async (req, res) => {
   try {
     const result = await AHPResult.find();
     if (!result || result.length === 0) {
